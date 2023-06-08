@@ -1,34 +1,36 @@
 const App = () => {
   const course = 'Half Stack application development'
-  const part1 = {
-    name: 'Fundamentals of React',
-    exercises: 10
-  }
-  const part2 = {
-    name: 'Using props to pass data',
-    exercises: 7
-  }
-  const part3 = {
-    name: 'State of a component',
-    exercises: 14
-  }
+  const parts = [
+    {
+      name: 'Fundamentals of React',
+      exercises: 10
+    },
+    {
+      name: 'Using props to pass data',
+      exercises: 7
+    },
+    {
+      name: 'State of a component',
+      exercises: 14
+    }
+  ]
 
   return (
     <div>
       <Header course = {course} />
       <p>
-        <Content name = {part1.name} exercises = {part1.exercises} />
+        <Content name = {parts[0].name} exercises = {parts[0].exercises} />
       </p>
       <p>
-        <Content name = {part2.name} exercises = {part2.exercises} />
+        <Content name = {parts[1].name} exercises = {parts[1].exercises} />
       </p>
       <p>
-        <Content name = {part3.name} exercises ={part3.exercises} />
+        <Content name = {parts[2].name} exercises ={parts[2].exercises} />
       </p>
       <p>
       <p style = {{display : "flex", alignItems: "center"}}>
         Number of exercises&nbsp;
-        <Total obj1 = {part1} obj2 = {part2} obj3 = {part3} />
+        <Total obj1 = {parts[0]} obj2 = {parts[1]} obj3 = {parts[2]} />
       </p>
       </p>
     </div>
@@ -53,6 +55,7 @@ const Header = (props) => {
 }
 
 const Total = (props) => {
+  //Accessing multiple objects at the same time
   const {obj1, obj2, obj3} = props;
   return (
       <p>{props.obj1.exercises+ props.obj2.exercises + props.obj3.exercises}</p>
