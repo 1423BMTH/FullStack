@@ -1,8 +1,9 @@
 const Hello = (props) => {
   //Destructuring: extracting values from objects or 
   //arrays and assigning them to variables in a concise and convenient manner.
-  const name = props.name;
-  const age = props.age;
+  // const name = props.name; This is not destructuring
+  // const age = props.age; THIS IS NOT DESTRUCTURING
+  const {name, age} = props;
   //End of destructuring
   
   const bornYr = () => new Date().getFullYear() - age;
