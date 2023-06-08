@@ -16,49 +16,44 @@ const App = () => {
   ]
 
   return (
+    /*However, do not pass different objects as separate props from
+     the App component to the components Content and Total. 
+     Instead, pass them directly as an array: */
     <div>
-      <Header course = {course} />
-      <p>
-        <Content name = {parts[0].name} exercises = {parts[0].exercises} />
-      </p>
-      <p>
-        <Content name = {parts[1].name} exercises = {parts[1].exercises} />
-      </p>
-      <p>
-        <Content name = {parts[2].name} exercises ={parts[2].exercises} />
-      </p>
-      <p>
-      <p style = {{display : "flex", alignItems: "center"}}>
-        Number of exercises&nbsp;
-        <Total obj1 = {parts[0]} obj2 = {parts[1]} obj3 = {parts[2]} />
-      </p>
-      </p>
-    </div>
+      <Header course={course} />
+      <Content arrayObj ={parts} />
+      <Total arrayObj={parts} />
+    </div>    
   )
 }
 
 const Content = (props) => {
   //props is an obj
+  const {arrayObj} = props;
   return (
     <div>
-      {props.name} {props.exercises}
-    </div>
+      <p>{arrayObj[0].name} {arrayObj[0].exercises}</p>
+      <p>{arrayObj[1].name} {arrayObj[1].exercises}</p>
+      <p>{arrayObj[2].name} {arrayObj[2].exercises}</p>
+    </div>    
   )
 } 
+
+const Total = (props) => {
+  //Accessing multiple objects at the same time
+  // const {obj1, obj2, obj3} = props;
+  //return(<p>{obj1.exercise + obj2.exercise + obj3.exercise}</p>);
+  const {arrayObj} = props;
+  return (
+      <p>{arrayObj[0].exercises+ arrayObj[1].exercises + arrayObj[2].exercises}</p>
+  )
+}
 
 const Header = (props) => {
   return (
     <div>
-      <h1>props.course</h1>
+      <h1>{props.course}</h1>
     </div>
-  )
-}
-
-const Total = (props) => {
-  //Accessing multiple objects at the same time
-  const {obj1, obj2, obj3} = props;
-  return (
-      <p>{props.obj1.exercises+ props.obj2.exercises + props.obj3.exercises}</p>
   )
 }
 
