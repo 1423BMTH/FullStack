@@ -8,9 +8,15 @@ const App = () => {
   const [neutral, setNeutral] = useState(0)
   const [bad, setBad] = useState(0)
 
-  const goodHandler = () => setGood(good + 1);
-  const neutralHandler = () => setNeutral(neutral + 1);
-  const badHandler = () => setBad(bad + 1);
+  const goodHandler = () => {
+    setGood(good + 1);
+  }
+  const neutralHandler = () => {
+    setNeutral(neutral + 1);
+  }
+  const badHandler = () => {
+    setBad(bad + 1);
+  }
 
   return (
     <div>
@@ -24,6 +30,9 @@ const App = () => {
       <p>good {good}</p>
       <p>neutral {neutral}</p>
       <p>bad {bad}</p>
+      <p>all {good + neutral + bad}</p>
+      <p>average {(good * 1 + neutral *0 + bad * (-1))/(good + bad + neutral)}</p>
+      <p>positive {good/(good + bad + neutral)*100} %</p>
     </div>
   )
 }
