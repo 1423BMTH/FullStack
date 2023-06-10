@@ -1,10 +1,19 @@
-import React from 'react';
+import { useState } from 'react'
+const App = () => {
+  const [ counter, setCounter ] = useState(0);
 
-const App = (props) => {
-  const { counter } = props;
+  const handleClick = () => {
+    console.log('clicked');
+    setCounter(counter + 1);
+  }
+
   return (
-    <div>{counter}</div>
-  );
-};
-
+    <div>
+      <div>{counter}</div>
+      <button onClick={handleClick}>
+        plus
+      </button>
+    </div>
+  )
+}
 export default App;
