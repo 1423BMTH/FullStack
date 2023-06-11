@@ -1,4 +1,30 @@
 import { useState } from 'react'
+//Reference the hook outside of function
+// const Statistics = (props) => {
+//   const {good, neutral ,bad} = props;
+//   return (
+//     <div>
+//       <p>good {props.good}</p>
+//       <p>neutral {props.neutral}</p>
+//       <p>bad {props.bad}</p>
+//       <p>all {props.good + props.neutral + props.bad}</p>
+//       <p>average {(props.good * 1 + props.neutral *0 + props.bad * (-1))/(props.good + props.bad + props.neutral)}</p>
+//       <p>positive {props.good/(props.good + props.bad + props.neutral)*100} %</p>
+//     </div>
+//   )
+// }
+const Statistics = ({good, neutral,bad}) => {
+  return (
+    <div>
+      <p>good {good}</p>
+      <p>neutral {neutral}</p>
+      <p>bad {bad}</p>
+      <p>all {good + neutral + bad}</p>
+      <p>average {(good * 1 + neutral *0 + bad * (-1))/(good + bad + neutral)}</p>
+      <p>positive {good/(good + bad + neutral)*100} %</p>
+    </div>
+  )
+}
 
 const App = () => {
   // save clicks of each button to its own state
@@ -27,14 +53,9 @@ const App = () => {
       <button onClick = {badHandler}>bad</button>
       <h1>statics</h1>
       </p>
-      <p>good {good}</p>
-      <p>neutral {neutral}</p>
-      <p>bad {bad}</p>
-      <p>all {good + neutral + bad}</p>
-      <p>average {(good * 1 + neutral *0 + bad * (-1))/(good + bad + neutral)}</p>
-      <p>positive {good/(good + bad + neutral)*100} %</p>
+      <Statistics good = {good} bad = {bad} neutral = {neutral}/>
     </div>
   )
 }
 
-export default App
+export default App;
