@@ -1,18 +1,13 @@
 import { useState } from 'react'
-//Reference the hook outside of function
-// const Statistics = (props) => {
-//   const {good, neutral ,bad} = props;
-//   return (
-//     <div>
-//       <p>good {props.good}</p>
-//       <p>neutral {props.neutral}</p>
-//       <p>bad {props.bad}</p>
-//       <p>all {props.good + props.neutral + props.bad}</p>
-//       <p>average {(props.good * 1 + props.neutral *0 + props.bad * (-1))/(props.good + props.bad + props.neutral)}</p>
-//       <p>positive {props.good/(props.good + props.bad + props.neutral)*100} %</p>
-//     </div>
-//   )
-// }
+
+const StatisticLine = ({text, value}) => {
+  return (
+    <div>
+      <p>{text}{value}</p>
+    </div>
+  )
+}
+
 const Statistics = ({good, neutral,bad}) => {
   if (good === 0 && neutral === 0 && bad === 0) {
     return (
@@ -24,21 +19,28 @@ const Statistics = ({good, neutral,bad}) => {
   else{
     return (
       <div>
-        <p>good {good}</p>
-        <p>neutral {neutral}</p>
-        <p>bad {bad}</p>
-        <p>all {good + neutral + bad}</p>
-        <p>average {(good * 1 + neutral *0 + bad * (-1))/(good + bad + neutral)}</p>
-        <p>positive {good/(good + bad + neutral)*100} %</p>
+        <StatisticLine text="good" value ={good} />
+        <StatisticLine text="neutral" value ={neutral} />
+        <StatisticLine text="bad" value={bad} />
+        <StatisticLine text="all" value ={good + neutral + bad } />
+        <StatisticLine text="average" value = {(good * 1 + neutral *0 + bad * (-1))/(good + bad + neutral)} />
+        <div><StatisticLine text="positive" value ={good/(good + bad + neutral)*100} /> <p>%</p></div>
       </div>
-    );
+    )
   };
 };
 
+const Button = (props) => {
+  const {text, handleClick} = props;
+  return (
+    //handleClick is a function
+    <button onClick = {handleClick}>
+      {text}
+    </button>
+  )
+}
+
 const App = () => {
-  // save clicks of each button to its own state
-  //The first element is the current state value,
-  // and the second element is the updater function associated with that state variable.
   const [good, setGood] = useState(0)
   const [neutral, setNeutral] = useState(0)
   const [bad, setBad] = useState(0)
@@ -57,14 +59,13 @@ const App = () => {
     <div>
       <h1>give feedback</h1>
       <p>
-      <button onClick={goodHandler}>good</button>
-      <button onClick = {neutralHandler}>neutral</button>
-      <button onClick = {badHandler}>bad</button>
-      <h1>statics</h1>
+        <Button handleClick = {goodHandler} text = "good"/>
+        <Button handleClick = {neutralHandler} text = "bad"/>
+        <Button handleClick = {badHandler} text = "neutral"/>
+        <h1>Statistics</h1>
       </p>
       <Statistics good = {good} bad = {bad} neutral = {neutral}/>
     </div>
   );
 }
-
 export default App;
