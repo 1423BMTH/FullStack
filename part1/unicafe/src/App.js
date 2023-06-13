@@ -2,13 +2,13 @@ import { useState } from 'react'
 
 const StatisticLine = ({text, value}) => {
   return(
+    //Cannot have <div> or <table> as a wrap 
     <tr>
       <td>{text}</td>
       <td>{value}</td>
     </tr>
   )
 }
-
 const Statistics = ({good, neutral,bad}) => {
   if (good === 0 && neutral === 0 && bad === 0) {
     return (
@@ -25,7 +25,7 @@ const Statistics = ({good, neutral,bad}) => {
         <StatisticLine text="neutral" value ={neutral} />
         <StatisticLine text="all" value ={good + neutral + bad } />
         <StatisticLine text="average" value = {(good * 1 + neutral *0 + bad * (-1))/(good + bad + neutral)} />
-        <div style = {{display : "flex", alignItems : "center"}}><StatisticLine text="positive" value ={good/(good + bad + neutral)*100} /> <p>%</p></div>
+        <tr style = {{display : "flex", alignItems : "center"}}><StatisticLine text="positive" value ={good/(good + bad + neutral)*100} /> <p>%</p></tr>
       </div>
     )
   };
